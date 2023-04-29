@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+### Getting start
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. yarn / npm install
+2. yarn start
+3. yarn test for testing
 
-## Available Scripts
+### Implementations of the orderbook
 
-In the project directory, you can run:
+1. Order book UI
+2. Establish socket connection and get bids and asks data
+3. Merge the push data to show on the orderbook list
+4. Edge cases handle: automatic reconnect/resubscription, fallbacks with api, error handlers
+5. Memory performance review
+6. Some e2e test cases with cypress.
 
-### `npm start`
+### Approches for implementation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Rematch** for Redux management, which handled all the data update logic. See `/model` for more details
+- `/hooks` for managing event handlers
+- `/orderbook` for UI rendering
+- **centrifugal.js** for websocket management
+- The `jwt_token` was generated from `onboarding.py`, and in this project I stored it in the `.env` file. However, it's a better option to get `jwt_token` from an endpoint.
+- `cypress` for some e2e tests. They may not be so thourough
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Challenges
 
-### `npm test`
+- I spent quite some time for python environment setting... But finally run `onboarding.py` successfully on venv with the `poetry`
+- It took some time on the socket data update logic. It was hard to debug at the beginning and couldn't calculate the `level Total` correctly
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Areas for imporvements
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The `Total` field of the bids data may update incorrectly.
+- Implemetation of the fallbacks when socket is down, like `http_stream`, `socketJS` and `sse`
+- Add the market `depth` for orderbook
+- Use `styled-system` for responsive web
+- Error reports to some platform like `Sentry.io` for errors tracking

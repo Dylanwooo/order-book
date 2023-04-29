@@ -1,0 +1,60 @@
+.container {
+  width: 450px;
+  border: 1px solid black;
+  height: 500px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.data-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+hr {
+  border-top: 2px solid;
+}
+.bid-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 230px;
+  overflow: hidden;
+  color: green;
+}
+
+.ask-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 230px;
+  overflow: hidden;
+  border-bottom: 1px solid black;
+  padding-bottom: 8px;
+  color: red;
+}
+
+.head {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.item-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.item-wrapper:hover {
+  background-color: whitesmoke;
+}
+
+.item-wrapper span:first-child {
+  flex: 1;
+  text-align: start;
+}
+.item-wrapper span {
+  flex: 1;
+  text-align: end;
+}

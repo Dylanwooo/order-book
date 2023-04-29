@@ -1,22 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Orderbook from "./orderbook";
+import { Provider, connect } from "react-redux";
+import store from "./model/store";
+
+import "./App.css";
+
+require("dotenv").config();
 
 function App() {
+  const mapState = (state) => ({
+    orderbook: state.orderbook,
+  });
+  const mapDispatch = (dispatch) => ({});
+  const OrderbookContainer = connect(mapState, mapDispatch)(Orderbook);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <strong>Orderbook</strong>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Click the <strong>connect</strong> button to start
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Provider store={store}>
+          <OrderbookContainer />
+        </Provider>
       </header>
     </div>
   );
