@@ -59,6 +59,8 @@ export const useSocketData = () => {
         bids.length > 0 && dispatch.orderbook.updateBids({ bids });
       } else {
         // Lost package, need to resubscribe
+        centrifuge.disconnect();
+
         const sub = centrifuge.newSubscription("orderbook:BTC-USD");
 
         setSubscriber(sub);
@@ -89,6 +91,9 @@ export const useSocketData = () => {
   useEffect(ErrorHandler, [subscriber]);
 
   const connectSocket = useCallback(() => {
+    // If there were already connection, disconnect it.
+    centrifuge && centrifuge.disconnect();
+
     /**
      * Connect the socket server with `TRANSPORT` array,
      * Inside also add the `http_stream` for fallback in case the websocket server is not working

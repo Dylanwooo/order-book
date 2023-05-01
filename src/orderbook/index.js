@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PriceLevelItem from "./PriceLevelItem";
 import { useSocketData } from "../hooks";
 import { useSelector } from "react-redux";
@@ -13,6 +13,10 @@ const OrderType = {
 function Orderbook() {
   const { connectSocket, closeSocket } = useSocketData();
   const { bids, asks } = useSelector(orderbookSelector);
+
+  useEffect(() => {
+    connectSocket();
+  }, [connectSocket]);
 
   const renderPriceLevels = (levels, orderType) => {
     const highlightColor =

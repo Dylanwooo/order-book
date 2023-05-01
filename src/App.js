@@ -18,9 +18,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <strong>Orderbook</strong>
-        <p>
-          Click the <strong>connect</strong> button to start
-        </p>
+
         <Provider store={store}>
           <OrderbookContainer />
         </Provider>

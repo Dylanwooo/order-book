@@ -39,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@lensesio/cypress-websocket-testing": "^1.0.1",
+    "cypress": "^12.11.0",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
