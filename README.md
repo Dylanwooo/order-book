@@ -45,7 +45,7 @@ Use the `Provider` to wrap our `Orderbook` component and pass the `store` prop.
 When we use the event handler to manage the data, we dispatch the data
 
 ```javascript
-subscriber.on("subscribed", function () {
+subscriber.on("subscribed", function() {
   const { asks, bids } = ctx.data;
   dispatch.orderbook.initSnapshot({
     asks,
@@ -101,6 +101,7 @@ In this project, I put the generated token in the `.env` file. However, it's a b
 
 - I spent quite some time for python environment setting... But finally run `onboarding.py` successfully on venv with `poetry`
 - It took some time on the socket data update logic. It was hard to debug at the beginning and couldn't calculate the `level Total` correctly
+- The frequent updated components should be an performance issue since we couldn't delay the update when new data comes in.
 
 ### **Areas for imporvements**
 
