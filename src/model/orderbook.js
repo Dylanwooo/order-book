@@ -11,7 +11,10 @@ const applySumTotal = (levels, idBid) => {
   if (!levels) return;
 
   const totalSums = [];
-  const traverseLevels = idBid ? [...levels].reverse() : [...levels];
+
+  const traverseLevels = [...levels].sort((cur, next) =>
+    idBid ? next[0] - cur[0] : cur[0] - next[0]
+  );
 
   const updatedLevels = traverseLevels.map((level, idx) => {
     const size = Number(level[1]);
