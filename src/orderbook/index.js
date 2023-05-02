@@ -9,6 +9,7 @@ const OrderType = {
   BIDS: "bids",
   ASKS: "asks",
 };
+const ORDERBOO_SIZE = 12;
 
 function Orderbook() {
   const { connectSocket, closeSocket } = useSocketData();
@@ -28,7 +29,7 @@ function Orderbook() {
       } else return currentLevel[0] - nextLevel[0];
     });
 
-    return sortedLevels.map((level, idx) => {
+    return sortedLevels.slice(0, ORDERBOO_SIZE).map((level, idx) => {
       return (
         <PriceLevelItem
           highlisghtStyle={idx === 0 ? { backgroundColor: highlightColor } : {}}
